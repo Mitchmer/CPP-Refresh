@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Adventurers.vcxproj" Id="5fcc9779-c7c6-4167-ba4e-1a66e74e3112" />
+</Solution>
