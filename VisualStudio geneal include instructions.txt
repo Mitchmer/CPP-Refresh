@@ -1,0 +1,6 @@
+Right-click on Project name in Solution explorer
+-> Properties
+-> C++
+-> General
+-> Additional Include Directories
+-> $(ProjectDir)%headerdir% -> %headerdir% is the directory to search for header files

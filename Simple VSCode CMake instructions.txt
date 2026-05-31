@@ -1,0 +1,40 @@
+New CMake Project in VSCode — Quick Reference
+1. Run Quick Start
+Ctrl+Shift+P → CMake: Quick Start
+
+Project name — no spaces
+C++
+Executable
+CTest / CPack — leave unchecked
+Target — select main.cpp
+Preset → Add new preset → Create from Compilers → pick Visual Studio 18 2026 x64
+
+
+2. Set up folder structure
+MyProject/
+├── header/
+├── src/
+│   └── main.cpp    ← move generated main.cpp here
+└── CMakeLists.txt
+
+3. Replace CMakeLists.txt contents
+cmakecmake_minimum_required(VERSION 3.10.0)
+project(MY_PROJECT VERSION 0.1.0 LANGUAGES C CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE HEADERS "header/*.h" "header/*.hpp")
+
+add_executable(MY_PROJECT ${SOURCES} ${HEADERS})
+
+target_include_directories(MY_PROJECT PRIVATE
+    ${CMAKE_SOURCE_DIR}/header
+)
+
+4. Build & Run
+
+Build — Ctrl+Shift+P → CMake: Build (or F7)
+Run — click the ▶ button in the status bar, or Ctrl+Shift+P → CMake: Run Without Debugging
+Debug — F5
