@@ -22,7 +22,7 @@ namespace cppadventure {
 		// s is a new selection to add
 		// end : if the selection is the last selection or not
 		void addSelection(string s, bool isLast);
-		void addSelections(string s[], int size);
+		void addSelections(string* sarr, int size);
 
 		void displayMenu() const;
 

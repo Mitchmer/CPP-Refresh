@@ -83,12 +83,13 @@ void testMenus() {
     );
 
     int mainMenu2Size = 3;
-    string mainMenu2SelectionArray[] = {
+    string* mainMenu2SelectionArray = new string[]{
         "1. Create new Adventurer",
         "2. List all Adventurers",
         "3. Exit"
     };
     mainMenu2.addSelections(mainMenu2SelectionArray, mainMenu2Size);
+    delete[] mainMenu2SelectionArray;
 
     cout << endl;
     mainMenu2.displayMenu();

@@ -28,7 +28,7 @@ void Menu::addSelection(string s, bool isLast) {
 	selections += builder;
 }
 
-void Menu::addSelections(string sarr[], int size) {
+void Menu::addSelections(string* sarr, int size) {
 	for (int i = 0; i < size; i++) {
 		if (i < (size - 1)) {
 			addSelection(sarr[i], false);
