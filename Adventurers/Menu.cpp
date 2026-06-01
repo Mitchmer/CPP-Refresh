@@ -2,8 +2,8 @@
 
 using namespace cppadventure;
 
-Menu::Menu(string h, string p) 
-	: header(h), prompt(p) {
+Menu::Menu(string h) 
+	: header(h) {
 	selections = "";
 }
 
@@ -13,10 +13,6 @@ string Menu::getHeader() const {
 
 string Menu::getSelections() const {
 	return selections;
-}
-
-string Menu::getPrompt() const {
-	return prompt;
 }
 
 void Menu::addSelection(string s, bool isLast) {
@@ -37,10 +33,4 @@ void Menu::addSelections(string* sarr, int size) {
 			addSelection(sarr[i], true);
 		}
 	}
-}
-
-void Menu::displayMenu() const {
-	cout << getHeader() << endl;
-	cout << getSelections() << endl;
-	cout << getPrompt() << endl;
 }
