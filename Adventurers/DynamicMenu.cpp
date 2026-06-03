@@ -2,33 +2,41 @@
 
 using namespace cppadventure;
 
-DynamicMenu::DynamicMenu() {
+DynamicMenu::DynamicMenu(const vector<string>* svPtr, string h, string p) 
+	: Menu(h, p) {
+	selections = new vector<string>();
 
-}
-
-DynamicMenu::DynamicMenu(vector<string> s) {
-
+	if (svPtr != nullptr) {
+		if (!svPtr->empty()) {
+			for (string s : *svPtr) {
+				selections->push_back(s);
+			}
+		}
+	}
 }
 
 vector<string> DynamicMenu::getSelections() const {
-	return selections;
+	return *selections;
 }
 
 // s is a new selection to add
 // end : if the selection is the last selection or not
-void DynamicMenu::addSelection(string s, bool isLast) {
-
+void DynamicMenu::addSelection(string s) {
+	selections->push_back(s);
 }
 
-void DynamicMenu::addSelections(const vector<string> &sv) {
-	for (string s : sv) {
-		selections.push_back(s);
+void DynamicMenu::addSelections(const vector<string>* sv) {
+	for (string s : *sv) {
+		selections->push_back(s);
 	}
 }
 
-void DynamicMenu::removeSelection(int index) {
-
+bool DynamicMenu::removeSelection(size_t index) {
+	if ((index < selections->size()) && !selections->empty()) {
+		selections->erase(selections->begin() + index);
+		return true;
+	}
+	else {
+		return false;
+	}
 }
-
-string getPrompt() const;
-void displayMenu() const;

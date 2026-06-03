@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Adventurer.cpp" />
     <ClCompile Include="DynamicMenu.cpp" />
+    <ClCompile Include="DynamicNumberedMenu.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="src\Adventurers.cpp" />
     <ClCompile Include="src\Player.cpp" />

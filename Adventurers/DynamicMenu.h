@@ -1,29 +1,19 @@
 #pragma once
-#include <string>
-#include <vector>
 #include "Menu.h"
-
-using std::vector;
 
 namespace cppadventure {
 	class DynamicMenu : public Menu {
 	private:
-		vector<string> selections;
+		vector<string>* selections;
 
 	public:
-		DynamicMenu();
-		DynamicMenu(vector<string> s);
+		// vector of selection strings and a prompt string
+		DynamicMenu(const vector<string>* svPtr = new vector<string>(), string h = "", string p = "");
 
-		vector<string> getSelections() const;
+		vector<string> getSelections() const override;
+		void addSelection(string s) override;
+		void addSelections(const vector<string>* sv) override;
+		bool removeSelection(size_t index) override;
 
-		// s is a new selection to add
-		// end : if the selection is the last selection or not
-		void addSelection(string s, bool isLast);
-		void addSelections(const vector<string> &sv);
-
-		void removeSelection(int index);
-
-		string getPrompt() const;
-		void displayMenu() const;
 	};
 }
