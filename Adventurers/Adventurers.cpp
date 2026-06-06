@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Adventurer.h"
-#include "Menu.h"
+#include "DynamicNumberedMenu.h"
 
 using namespace cppadventure;
 using std::cout, std::endl;
@@ -66,19 +66,19 @@ void testAdventurers() {
 }
 
 void testMenus() {
-    Menu mainMenu = Menu(
-        "----------------\nWelcome to the Guild!\n----------------",
-        "Enter selection (or q to exit): "
-    );
-    mainMenu.addSelection("1. Create new Adventurer", false);
-    mainMenu.addSelection("2. List all Adventurers", false);
-    mainMenu.addSelection("3. Exit", true);
+    string header{ "----------------\nWelcome to Guild #1!\n----------------" };
+    string prompt{ "Enter selection (or q to exit): " };
+    
+    DynamicNumberedMenu mainMenu1{ DynamicNumberedMenu(header, prompt) };
+    mainMenu1.addSelection("1. Create new Adventurer");
+    mainMenu1.addSelection("2. List all Adventurers");
+    mainMenu1.addSelection("3. Exit");
 
     cout << endl;
-    mainMenu.displayMenu();
+    mainMenu1.displayMenu();
 
-    Menu mainMenu2 = Menu(
-        "----------------\nWelcome to the Guild!\n----------------",
+    DynamicNumberedMenu mainMenu2 = DynamicNumberedMenu(
+        "----------------\nWelcome to Guild #2!\n----------------",
         "Enter selection (or q to exit): "
     );
 

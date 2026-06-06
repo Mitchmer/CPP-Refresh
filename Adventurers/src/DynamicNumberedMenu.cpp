@@ -5,7 +5,7 @@ using namespace cppadventure;
 //============================
 // Default Constructor
 
-DynamicNumberedMenu::DynamicNumberedMenu(const vector<string>* svPtr, string h, string p)
+DynamicNumberedMenu::DynamicNumberedMenu(string h, string p, const vector<string>* svPtr)
 	: Menu(h, p) {
 	selections = new vector<string>();
 	lastIndex = 0;
@@ -23,8 +23,9 @@ DynamicNumberedMenu::DynamicNumberedMenu(const vector<string>* svPtr, string h, 
 //===========================
 // Range Validation
 
-bool DynamicNumberedMenu::rangeIncludes(size_t index) const {
-	return (!selections->empty() && index <= lastIndex);
+bool DynamicNumberedMenu::rangeIncludesSelectionNumber(size_t selectionNumber) const {
+	if (selectionNumber == 0) return false;
+	else return (!selections->empty() && ((selectionNumber - 1) <= lastIndex));
 }
 
 //==========================
@@ -62,4 +63,8 @@ bool DynamicNumberedMenu::removeSelection(size_t index) {
 	else {
 		return false;
 	}
+}
+
+DynamicNumberedMenu::~DynamicNumberedMenu() {
+	delete selections;
 }
