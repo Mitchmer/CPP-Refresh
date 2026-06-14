@@ -65,6 +65,31 @@ bool DynamicNumberedMenu::removeSelection(size_t index) {
 	}
 }
 
+void DynamicNumberedMenu::displayMenu() const {
+	using std::cout, std::endl;
+	cout << getHeader() << endl;
+	for (string selection : getSelections()) {
+		cout << selection << endl;
+	}
+	cout << getPrompt();
+}
+
+bool DynamicNumberedMenu::pauseForSelectionAndValidate(){
+	using std::cin;
+
+	cin >> input;
+	if (cin.fail()) {
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return false;
+	}
+	return rangeIncludesSelectionNumber(input);
+}
+
+int DynamicNumberedMenu::getInputSelection() const {
+	return input;
+}
+
 DynamicNumberedMenu::~DynamicNumberedMenu() {
 	delete selections;
 }

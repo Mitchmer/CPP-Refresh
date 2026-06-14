@@ -16,3 +16,5 @@ void Menu::setPrompt(string s) {
 string Menu::getPrompt() const {
 	return prompt;
 }
+
+Menu::~Menu() {}

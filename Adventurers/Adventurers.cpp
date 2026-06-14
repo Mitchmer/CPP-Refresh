@@ -79,20 +79,25 @@ void testMenus() {
 
     DynamicNumberedMenu mainMenu2 = DynamicNumberedMenu(
         "----------------\nWelcome to Guild #2!\n----------------",
-        "Enter selection (or q to exit): "
+        "Enter selection: "
     );
 
     int mainMenu2Size = 3;
-    string* mainMenu2SelectionArray = new string[]{
+    vector<string>* mainMenu2SelectionVector = new vector<string>{
         "1. Create new Adventurer",
         "2. List all Adventurers",
         "3. Exit"
     };
-    mainMenu2.addSelections(mainMenu2SelectionArray, mainMenu2Size);
-    delete[] mainMenu2SelectionArray;
+    mainMenu2.addSelections(mainMenu2SelectionVector);
 
     cout << endl;
     mainMenu2.displayMenu();
+    
+    while (!mainMenu2.pauseForSelectionAndValidate()) {
+        cout << "Invalid input. Please try again.";
+    }
+
+    cout << "test" << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

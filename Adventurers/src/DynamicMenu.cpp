@@ -43,3 +43,5 @@ bool DynamicMenu::removeSelection(size_t index) {
 		return false;
 	}
 }
+
+void DynamicMenu::displayMenu() const {}

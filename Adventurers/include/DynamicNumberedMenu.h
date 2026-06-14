@@ -8,6 +8,8 @@ namespace cppadventure {
 		size_t lastIndex;
 		bool isEmpty = true;
 
+		int input;
+
 	public:
 		DynamicNumberedMenu(string h = "", string p = "", const vector<string>* svPtr = new vector<string>());
 
@@ -20,6 +22,10 @@ namespace cppadventure {
 		bool removeSelection(size_t index) override;
 
 		void displayMenu() const;
+
+		// Input
+		bool pauseForSelectionAndValidate();
+		int getInputSelection() const;
 
 		~DynamicNumberedMenu();
 
