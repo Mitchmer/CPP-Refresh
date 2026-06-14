@@ -10,14 +10,82 @@ using namespace cppadventure;
 using std::cout, std::endl;
 
 // Test declaration
+
 void testAdventurers();
 void testMenus();
 
+DynamicNumberedMenu buildMainMenu();
+void displayMainMenu(DynamicNumberedMenu& menu);
+
+DynamicNumberedMenu buildCreateAdventurerMenu();
+void displayCreateAdventurerMenu(DynamicNumberedMenu& menu);
+
 int main()
 {
-    testAdventurers();
-    testMenus();
+    DynamicNumberedMenu mainMenu = buildMainMenu();
+    displayMainMenu(mainMenu);
 }
+
+void displayMainMenu(DynamicNumberedMenu& mainMenu) {
+    while (mainMenu.getIsActive()) {
+        mainMenu.displayMenu();
+        while (!mainMenu.pauseForSelectionAndValidate()) {
+            cout << mainMenu.getInvalidSelecitonMessage() << endl;
+            cout << mainMenu.getPrompt();
+        }
+        switch (mainMenu.getInputSelection()) {
+        case 1: {
+            // create new adventurer
+            DynamicNumberedMenu createAdventurerMenu = buildCreateAdventurerMenu();
+            displayCreateAdventurerMenu(createAdventurerMenu);
+            break;
+        }
+        case 2: {
+            // list all adventurers
+            cout << "List all adventurers STUB" << endl;
+            Menu::pauseConsole();
+            break;
+        }
+        case 3:
+            mainMenu.setIsActive(false);
+            break;
+        default:
+            cout << mainMenu.getInvalidSelecitonMessage() << endl;
+        }
+    }
+}
+
+DynamicNumberedMenu buildMainMenu() {
+    DynamicNumberedMenu mainMenu{
+    "================ Come Join Us on an Adventure! ================",
+    "Enter a selection: ",
+    new vector<string>{},
+    -1,
+    "Invalid selection. Please choose a valid selection.",
+    true
+    };
+    mainMenu.addSelection("1. Create a new Adventurer");
+    mainMenu.addSelection("2. List all Adventurers");
+    mainMenu.addSelection("3. Exit");
+    return mainMenu;
+}
+
+
+DynamicNumberedMenu buildCreateAdventurerMenu() {
+    DynamicNumberedMenu createAdventurerMenu = DynamicNumberedMenu{
+    "================ Create An Adventurer ================\nPlease select a ",
+    "Enter a selection: "
+    };
+    createAdventurerMenu.setInvalidSelectionMessage("Invalid selection. Please choose a valid selection.");
+
+    return createAdventurerMenu;
+}
+
+void displayCreateAdventurerMenu(DynamicNumberedMenu& createAdventurerMenu) {
+    createAdventurerMenu.displayMenu();
+    Menu::pauseConsole();
+}
+
 
 // Test definition
 void testAdventurers() {

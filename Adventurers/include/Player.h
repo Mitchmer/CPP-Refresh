@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
-using std::string;
+#include <vector>
+using std::string, std::vector;
 
 namespace cppadventure {
 
     class Player {
         public:
             Player();
-            Player(string name, const string* inventory, int size);
+            Player(string name, const vector<string>& inventory);
             Player(Player& player);
 
             // name methods
@@ -15,9 +16,10 @@ namespace cppadventure {
             string getName() const; // const to ensure no modifications in method
 
             // inventory methods
-            void setInventory(const string* inventory, int size); // const string* to ensure the original inventory is not changed 
-            string* getInventory() const; // const at end to ensure no modifications in method
+            void setInventory(const vector<string>& inventory); // const string* to ensure the original inventory is not changed 
+            const vector<string>& getInventory() const; // const at end to ensure no modifications in method
             void printInventory() const;
+            void getInventorySize() const;
 
             // display
             virtual void print() const = 0; // marks Player as an abstract class
@@ -27,7 +29,7 @@ namespace cppadventure {
 
         private:
             string name;
-            string* inventory;
+            vector<string> inventory;
             int inventorySize;
 
     };

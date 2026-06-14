@@ -5,8 +5,8 @@ using namespace cppadventure;
 //============================
 // Default Constructor
 
-DynamicNumberedMenu::DynamicNumberedMenu(string h, string p, const vector<string>* svPtr)
-	: Menu(h, p) {
+DynamicNumberedMenu::DynamicNumberedMenu(string h, string p, const vector<string>* svPtr, int i, string invalidSelMsg, bool isActive)
+	: Menu(h, p, invalidSelMsg, isActive), input(i) {
 	selections = new vector<string>();
 	lastIndex = 0;
 
@@ -67,6 +67,8 @@ bool DynamicNumberedMenu::removeSelection(size_t index) {
 
 void DynamicNumberedMenu::displayMenu() const {
 	using std::cout, std::endl;
+
+	clearConsole();
 	cout << getHeader() << endl;
 	for (string selection : getSelections()) {
 		cout << selection << endl;

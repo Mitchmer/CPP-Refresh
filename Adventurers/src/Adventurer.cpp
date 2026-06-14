@@ -11,8 +11,8 @@ Adventurer::Adventurer(Role r, WeaponType wt){
 	weaponType = wt;
 }
 
-Adventurer::Adventurer(string n, const string* inv, int s, Role r, WeaponType wt) 
-	: Player(n, inv, s)	{
+Adventurer::Adventurer(string n, const vector<string>& inv, Role r, WeaponType wt) 
+	: Player(n, inv)	{
 	cout << "Adventurer (Child) Parameterized Constructor called" << endl;
 	role = r;
 	weaponType = wt;

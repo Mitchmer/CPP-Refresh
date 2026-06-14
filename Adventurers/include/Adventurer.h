@@ -12,7 +12,7 @@ namespace cppadventure {
 			// Constructors
 
 			Adventurer(Role r = Role::DPS, WeaponType wt = WeaponType::MELEE); // default parameters also takes care of default constructor
-			Adventurer(string name, const string* inventory, int size, Role role, WeaponType weaponType);
+			Adventurer(string name, const vector<string>& inv, Role role, WeaponType weaponType);
 
 			//==================================
 			// Getters
