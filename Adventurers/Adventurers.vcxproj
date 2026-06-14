@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,17 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Adventurer.cpp" />
-    <ClCompile Include="DynamicMenu.cpp" />
-    <ClCompile Include="DynamicNumberedMenu.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="src\Adventurers.cpp" />
+    <ClCompile Include="Adventurers.cpp" />
+    <ClCompile Include="src\Adventurer.cpp" />
+    <ClCompile Include="src\DynamicMenu.cpp" />
+    <ClCompile Include="src\DynamicNumberedMenu.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DynamicMenu.h" />
-    <ClInclude Include="DynamicNumberedMenu.h" />
     <ClInclude Include="include\Adventurer.h" />
+    <ClInclude Include="include\DynamicMenu.h" />
+    <ClInclude Include="include\DynamicNumberedMenu.h" />
     <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Role.h" />

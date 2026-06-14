@@ -8,7 +8,7 @@ namespace cppadventure {
 
 	public:
 		// vector of selection strings and a prompt string
-		DynamicMenu(string h = "", string p = "", const vector<string>* svPtr = new vector<string>());
+		DynamicMenu(const vector<string>* svPtr = new vector<string>(), string h = "", string p = "");
 
 		vector<string> getSelections() const override;
 		void addSelection(string s) override;
