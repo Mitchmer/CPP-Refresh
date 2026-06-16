@@ -10,18 +10,18 @@ using std::cout, std::endl;
 // Constructors
 
 Player::Player()
-	: name("testname"), inventory({}), inventorySize(0) {
+	: name("testname"), inventory(vector<string>{}), inventorySize(0) {
 	cout << "Player (Parent) Default Constructor called" << std::endl;
 }
 
 Player::Player(string n, const vector<string>& inv) 
-	: name(n), inventory(inv), inventorySize(inventory.size()) {
+	: name(n), inventory(inv), inventorySize(inv.size()) {
 	cout << "Player (Parent) Parameterized Constructor called" << std::endl;
 }
 
 // copy constructor
 Player::Player(Player& player) 
-	: name(player.getName()), inventorySize(player.inventorySize), inventory(player.getInventory()) {}
+	: name(player.getName()), inventorySize(player.getInventorySize()), inventory(player.getInventory()) {}
 
 //=================================
 // name methods
@@ -57,13 +57,17 @@ const vector<string>& Player::getInventory() const {
 	return inventory;
 }
 
+size_t Player::getInventorySize() const {
+	return inventorySize;
+}
+
 void Player::printInventory() const {
 	vector<string> inv = getInventory();
 		cout << "Inventory: [";
 
 		if (inv.size() > 0) {
-			for (int i = 0; i < inventorySize; i++) {
-				cout << inv[i];
+			for (size_t i = 0; i < inventorySize; i++) {
+				cout << inv.at(i);
 				if (i < (inventorySize - 1)) {
 					cout << ", ";
 				}

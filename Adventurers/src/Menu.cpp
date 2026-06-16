@@ -11,10 +11,9 @@ void Menu::clearConsole() {
 void Menu::pauseConsole() {
 	using std::cin;
 	
-	char discard = ' ';
-	cin.get(discard);
+	string discard = "";
+	getline(cin, discard);
 	cin.clear();
-	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 string Menu::getHeader() const {

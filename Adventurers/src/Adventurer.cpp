@@ -11,11 +11,16 @@ Adventurer::Adventurer(Role r, WeaponType wt){
 	weaponType = wt;
 }
 
-Adventurer::Adventurer(string n, const vector<string>& inv, Role r, WeaponType wt) 
-	: Player(n, inv)	{
+Adventurer::Adventurer(string n, Role r, WeaponType wt, const vector<string>& inv) 
+	: Player(n, inv) {
 	cout << "Adventurer (Child) Parameterized Constructor called" << endl;
 	role = r;
 	weaponType = wt;
+}
+
+// Copy Constructor
+Adventurer::Adventurer(Adventurer& adventurer) :
+	role(adventurer.getRole()), weaponType(adventurer.getWeaponType()), Player(adventurer.getName(), adventurer.getInventory()) {
 }
 
 //==================================
@@ -32,6 +37,9 @@ Role Adventurer::getRole() const {
 WeaponType Adventurer::getWeaponType() const {
 	return weaponType;
 }
+
+//==================================
+//	Display
 
 void Adventurer::print() const {
 	cout << "Name: " << getName() << endl

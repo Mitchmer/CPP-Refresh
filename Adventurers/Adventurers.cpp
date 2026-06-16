@@ -22,7 +22,9 @@ void displayCreateAdventurerMenu(DynamicNumberedMenu& menu);
 
 int main()
 {
+    //testAdventurers();
     DynamicNumberedMenu mainMenu = buildMainMenu();
+    //mainMenu.pauseConsole();
     displayMainMenu(mainMenu);
 }
 
@@ -90,8 +92,7 @@ void displayCreateAdventurerMenu(DynamicNumberedMenu& createAdventurerMenu) {
 // Test definition
 void testAdventurers() {
     string name = "Hercules";
-    const int invsize = 3;
-    const string* inventory = new string[]{ "apple", "stick", "letter" };
+    vector<string> inventory = vector<string>{ "apple", "stick", "letter" };
     string invtest[] = { "1", "2" };
 
     cout << "Testing static array range-based for loop" << endl;
@@ -101,21 +102,17 @@ void testAdventurers() {
     cout << endl;
 
     cout << "Creating new Adventurer Objects" << endl;
-    Adventurer* player1 = new Adventurer(name, inventory, invsize, Role::HEALER, WeaponType::CATALYST);
+    Adventurer* player1 = new Adventurer(name, Role::HEALER, WeaponType::CATALYST, inventory);
     Adventurer* player2 = new Adventurer();
-    delete[] inventory; // could remove if inventory was created without the 'new' keyword
 
     // testing whether or not the dynamic array is preserved
-    inventory = (*player1).getInventory();
+    inventory = player1->getInventory();
 
     cout << endl << "Testing dynamic array for loop" << endl;
-    for (int i = 0; i < invsize; i++) {
-        cout << inventory[i] << endl;   // [] auto-dereferences the pointer here
+    for (size_t i = 0; i < player1->getInventorySize(); i++) {
+        cout << inventory.at(i) << endl;   // [] auto-dereferences the pointer here
     }
     cout << endl;
-
-    delete[] inventory;
-    inventory = nullptr; // reset dangling pointer
 
     cout << "Testing Player print methods" << endl;
     cout << "Player 1:" << endl;
