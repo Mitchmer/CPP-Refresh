@@ -15,22 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Adventurers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Adventurer.cpp">
+    <ClCompile Include="Adventurers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
+    <ClCompile Include="src\Adventurer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicMenu.cpp">
+    <ClCompile Include="src\DynamicMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicNumberedMenu.cpp">
+    <ClCompile Include="src\DynamicNumberedMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,10 +53,13 @@
     <ClInclude Include="include\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicMenu.h">
+    <ClInclude Include="include\DynamicMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicNumberedMenu.h">
+    <ClInclude Include="include\DynamicNumberedMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
