@@ -74,6 +74,7 @@ DynamicNumberedMenu buildMainMenu() {
 
 
 DynamicNumberedMenu buildCreateAdventurerMenu() {
+
     DynamicNumberedMenu createAdventurerMenu = DynamicNumberedMenu{
     "================ Create An Adventurer ================\nPlease select a ",
     "Enter a selection: "

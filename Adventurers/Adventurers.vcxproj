@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Adventurers.cpp" />
+    <ClCompile Include="driver.cpp" />
     <ClCompile Include="src\Adventurer.cpp" />
     <ClCompile Include="src\DynamicMenu.cpp" />
     <ClCompile Include="src\DynamicNumberedMenu.cpp" />

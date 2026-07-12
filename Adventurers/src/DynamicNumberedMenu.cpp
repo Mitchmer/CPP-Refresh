@@ -85,6 +85,8 @@ bool DynamicNumberedMenu::pauseForSelectionAndValidate(){
 		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return false;
 	}
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return rangeIncludesSelectionNumber(input);
 }
 
