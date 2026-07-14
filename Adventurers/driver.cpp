@@ -18,7 +18,7 @@ DynamicNumberedMenu buildMainMenu();
 void displayMainMenu(DynamicNumberedMenu& menu);
 
 DynamicNumberedMenu buildCreateAdventurerMenu();
-void displayCreateAdventurerMenu(DynamicNumberedMenu& menu);
+Adventurer* displayCreateAdventurerMenu(DynamicNumberedMenu& menu);
 
 int main()
 {
@@ -81,14 +81,20 @@ DynamicNumberedMenu buildCreateAdventurerMenu() {
     };
     createAdventurerMenu.setInvalidSelectionMessage("Invalid selection. Please choose a valid selection.");
 
+    createAdventurerMenu.addSelection("1. ")
+
     return createAdventurerMenu;
 }
 
-void displayCreateAdventurerMenu(DynamicNumberedMenu& createAdventurerMenu) {
+Adventurer* displayCreateAdventurerMenu(DynamicNumberedMenu& createAdventurerMenu) {
     createAdventurerMenu.displayMenu();
+    while (!createAdventurerMenu.pauseForSelectionAndValidate()) {
+        cout << createAdventurerMenu.getInvalidSelecitonMessage() << endl;
+        cout << createAdventurerMenu.getPrompt();
+    }
     Menu::pauseConsole();
+    return new Adventurer();
 }
-
 
 // Test definition
 void testAdventurers() {
