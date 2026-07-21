@@ -17,8 +17,15 @@ void testMenus();
 DynamicNumberedMenu buildMainMenu();
 void displayMainMenu(DynamicNumberedMenu& menu);
 
-DynamicNumberedMenu buildCreateAdventurerMenu();
-Adventurer* displayCreateAdventurerMenu(DynamicNumberedMenu& menu);
+DynamicNumberedMenu buildCreateAdventurerRoleMenu();
+void displayCreateAdventurerRoleMenu(DynamicNumberedMenu& menu, Adventurer*& adventurer);
+
+DynamicNumberedMenu buildCreateAdventurerWeaponTypeMenu();
+void displayCreateAdventurerWeaponTypeMenu(DynamicNumberedMenu& menu, Adventurer*& adventurer);
+
+DynamicNumberedMenu buildCreateAdventurerNameMenu();
+void displayCreateAdventurerNameMenu(DynamicNumberedMenu& menu, Adventurer*& adventurer);
+
 
 int main()
 {
@@ -27,6 +34,7 @@ int main()
     //mainMenu.pauseConsole();
     displayMainMenu(mainMenu);
 }
+
 
 void displayMainMenu(DynamicNumberedMenu& mainMenu) {
     while (mainMenu.getIsActive()) {
@@ -38,8 +46,8 @@ void displayMainMenu(DynamicNumberedMenu& mainMenu) {
         switch (mainMenu.getInputSelection()) {
         case 1: {
             // create new adventurer
-            DynamicNumberedMenu createAdventurerMenu = buildCreateAdventurerMenu();
-            displayCreateAdventurerMenu(createAdventurerMenu);
+            DynamicNumberedMenu createAdventurerMenu = buildCreateAdventurerRoleMenu();
+            displayCreateAdventurerRoleMenu(createAdventurerMenu);
             break;
         }
         case 2: {
@@ -57,6 +65,81 @@ void displayMainMenu(DynamicNumberedMenu& mainMenu) {
     }
 }
 
+
+void displayCreateAdventurerRoleMenu(DynamicNumberedMenu& createAdventurerRoleMenu, Adventurer*& adventurer) {
+    createAdventurerRoleMenu.displayMenu();
+    while (!createAdventurerRoleMenu.pauseForSelectionAndValidate()) {
+        cout << createAdventurerRoleMenu.getInvalidSelecitonMessage() << endl;
+        cout << createAdventurerRoleMenu.getPrompt();
+    }
+    Role role = Role::DPS;
+    switch (createAdventurerRoleMenu.getInputSelection()) {
+    case 1: {
+        // DPS
+        role = Role::DPS;
+        break;
+    }
+    case 2: {
+        // Tank
+        role = Role::TANK;
+        break;
+    }
+    case 3:
+        // Healer
+        role = Role::HEALER;
+        break;
+    case 4:
+        createAdventurerRoleMenu.setIsActive(false);
+        delete adventurer;
+        break;
+    default:
+        cout << createAdventurerRoleMenu.getInvalidSelecitonMessage() << endl;
+    }
+    if (createAdventurerRoleMenu.getIsActive()) {
+        // TODO: move to next menu
+        DynamicNumberedMenu createAdventurerWeaponTypeMenu = buildCreateAdventurerWeaponTypeMenu();
+    }
+    return;
+}
+
+
+void displayCreateAdventurerRoleMenu(DynamicNumberedMenu& createAdventurerRoleMenu, Adventurer*& adventurer) {
+    createAdventurerRoleMenu.displayMenu();
+    while (!createAdventurerRoleMenu.pauseForSelectionAndValidate()) {
+        cout << createAdventurerRoleMenu.getInvalidSelecitonMessage() << endl;
+        cout << createAdventurerRoleMenu.getPrompt();
+    }
+    Role role = Role::DPS;
+    switch (createAdventurerRoleMenu.getInputSelection()) {
+    case 1: {
+        // DPS
+        role = Role::DPS;
+        break;
+    }
+    case 2: {
+        // Tank
+        role = Role::TANK;
+        break;
+    }
+    case 3:
+        // Healer
+        role = Role::HEALER;
+        break;
+    case 4:
+        createAdventurerRoleMenu.setIsActive(false);
+        delete adventurer;
+        break;
+    default:
+        cout << createAdventurerRoleMenu.getInvalidSelecitonMessage() << endl;
+    }
+    if (createAdventurerRoleMenu.getIsActive()) {
+        // TODO: move to next menu
+        DynamicNumberedMenu createAdventurerWeaponTypeMenu = buildCreateAdventurerWeaponTypeMenu();
+    }
+    return;
+}
+
+
 DynamicNumberedMenu buildMainMenu() {
     DynamicNumberedMenu mainMenu{
     "================ Come Join Us on an Adventure! ================",
@@ -73,28 +156,56 @@ DynamicNumberedMenu buildMainMenu() {
 }
 
 
-DynamicNumberedMenu buildCreateAdventurerMenu() {
+DynamicNumberedMenu buildCreateAdventurerRoleMenu() {
 
-    DynamicNumberedMenu createAdventurerMenu = DynamicNumberedMenu{
-    "================ Create An Adventurer ================\nPlease select a ",
+    DynamicNumberedMenu createAdventurerRoleMenu = DynamicNumberedMenu{
+    "================ Create An Adventurer ================\nWhich role would you like for your character?",
     "Enter a selection: "
     };
-    createAdventurerMenu.setInvalidSelectionMessage("Invalid selection. Please choose a valid selection.");
+    createAdventurerRoleMenu.setInvalidSelectionMessage("Invalid selection. Please choose a valid selection.");
 
-    createAdventurerMenu.addSelection("1. ")
+    createAdventurerRoleMenu.addSelection("1. DPS");
+    createAdventurerRoleMenu.addSelection("2. Tank");
+    createAdventurerRoleMenu.addSelection("3. Healer");
+    createAdventurerRoleMenu.addSelection("4. Back to Main Menu");
 
-    return createAdventurerMenu;
+    return createAdventurerRoleMenu;
 }
 
-Adventurer* displayCreateAdventurerMenu(DynamicNumberedMenu& createAdventurerMenu) {
-    createAdventurerMenu.displayMenu();
-    while (!createAdventurerMenu.pauseForSelectionAndValidate()) {
-        cout << createAdventurerMenu.getInvalidSelecitonMessage() << endl;
-        cout << createAdventurerMenu.getPrompt();
-    }
-    Menu::pauseConsole();
-    return new Adventurer();
+
+DynamicNumberedMenu buildCreateAdventurerWeaponTypeMenu() {
+
+    DynamicNumberedMenu createAdventurerWeaponTypeMenu = DynamicNumberedMenu{
+    "================ Create An Adventurer ================\nWhich weapon type will your character use?",
+    "Enter a selection: "
+    };
+    createAdventurerWeaponTypeMenu.setInvalidSelectionMessage("Invalid selection. Please choose a valid selection.");
+
+    createAdventurerWeaponTypeMenu.addSelection("1. Melee");
+    createAdventurerWeaponTypeMenu.addSelection("2. Ranged");
+    createAdventurerWeaponTypeMenu.addSelection("3. Catalyst");
+    createAdventurerWeaponTypeMenu.addSelection("4. Back to Main Menu");
+
+    return createAdventurerWeaponTypeMenu;
 }
+
+
+DynamicNumberedMenu buildCreateAdventurerNameMenu() {
+
+    DynamicNumberedMenu createAdventurerNameMenu = DynamicNumberedMenu{
+    "================ Create An Adventurer ================\nWhich role would you like for your character?",
+    "Enter a selection: "
+    };
+    createAdventurerNameMenu.setInvalidSelectionMessage("Invalid selection. Please choose a valid selection.");
+
+    createAdventurerNameMenu.addSelection("1. DPS");
+    createAdventurerNameMenu.addSelection("2. Tank");
+    createAdventurerNameMenu.addSelection("3. Healer");
+    createAdventurerNameMenu.addSelection("4. Back to Main Menu");
+
+    return createAdventurerNameMenu;
+}
+
 
 // Test definition
 void testAdventurers() {
@@ -136,6 +247,7 @@ void testAdventurers() {
     delete player1;
     delete player2;
 }
+
 
 void testMenus() {
     string header{ "----------------\nWelcome to Guild #1!\n----------------" };
