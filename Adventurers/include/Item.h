@@ -1,6 +1,6 @@
 #pragma once
 
-#include<string>
+import std;
 using std::string_view, std::string;
 
 namespace cppadventure {

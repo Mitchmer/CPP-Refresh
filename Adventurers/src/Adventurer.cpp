@@ -1,5 +1,5 @@
 #include "Adventurer.h"
-#include <iostream>
+import std;
 
 using namespace cppadventure;
 using std::cout, std::endl;

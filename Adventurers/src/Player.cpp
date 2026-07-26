@@ -1,6 +1,5 @@
 #include "Player.h"
-#include <string>
-#include <iostream>
+import std;
 
 using namespace cppadventure;
 using std::string;
@@ -10,7 +9,7 @@ using std::cout, std::endl;
 // Constructors
 
 Player::Player()
-	: name("testname"), inventory(vector<string>{}), inventorySize(0) {}
+	: name(""), inventory(vector<string>{}), inventorySize(0) {}
 
 Player::Player(string n, const vector<string>& inv) 
 	: name(n), inventory(inv), inventorySize(inv.size()) {}
@@ -72,7 +71,6 @@ void Player::printInventory() const {
 		else {
 			cout << "Empty";
 		}
-	
 		cout << "]" << std::endl;
 }
 

@@ -27,6 +27,12 @@ namespace cppadventure {
 			void print() const;
 
 			//==================================
+			// Static methods
+
+			static string roleToString(Role r);
+			static string weaponTypeToString(WeaponType wt);
+
+			//==================================
 			// Destructor
 
 			~Adventurer();
@@ -38,11 +44,5 @@ namespace cppadventure {
 
 			Role role;
 			WeaponType weaponType;
-
-			//==================================
-			// Static methods
-
-			static string roleToString(Role r);
-			static string weaponTypeToString(WeaponType wt);
 	};
 }

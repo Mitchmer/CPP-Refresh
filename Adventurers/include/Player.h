@@ -1,6 +1,5 @@
 #pragma once
-#include <string>
-#include <vector>
+import std;
 using std::string, std::vector;
 
 namespace cppadventure {

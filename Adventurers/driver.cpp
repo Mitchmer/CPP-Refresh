@@ -1,7 +1,7 @@
 // Adventurers.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
+import std;
 #include "Player.h"
 #include "Adventurer.h"
 #include "DynamicNumberedMenu.h"
@@ -15,6 +15,12 @@ using std::cout, std::endl;
 void testAdventurers();
 void testMenus();
 
+
+constexpr size_t NAME_LENGTH = 20;
+constexpr size_t ROLE_LENGTH = 12;
+constexpr size_t WEAPONTYPE_LENGTH = 12;
+constexpr size_t INVENTORY_LENGTH = 32;
+
 DynamicNumberedMenu buildMainMenu();
 void displayMainMenu(DynamicNumberedMenu& menu, vector<Adventurer>& adventurers);
 
@@ -27,6 +33,8 @@ WeaponType displayCreateAdventurerWeaponTypeMenu(DynamicNumberedMenu& menu);
 
 DynamicStringInputMenu buildCreateAdventurerNameMenu();
 string displayCreateAdventurerNameMenu(DynamicStringInputMenu& menu);
+
+void listAdventurersBranch(vector<Adventurer>& adventurers);
 
 
 int main()
@@ -56,11 +64,7 @@ void displayMainMenu(DynamicNumberedMenu& mainMenu, vector<Adventurer>& adventur
         }
         case 2: {
             // list all adventurers
-            for (Adventurer adventurer : adventurers) {
-                adventurer.print();
-                cout << endl;
-            }
-            Menu::pauseConsole();
+            listAdventurersBranch(adventurers);
             break;
         }
         case 3: {
@@ -71,6 +75,60 @@ void displayMainMenu(DynamicNumberedMenu& mainMenu, vector<Adventurer>& adventur
             cout << mainMenu.getInvalidSelecitonMessage() << endl;
         }
     }
+}
+
+
+void listAdventurersBranch(vector<Adventurer>& adventurers) {
+    using std::ios, std::string_view;
+
+    Menu::clearConsole();
+    cout << "|Name                |Role        |Weapon      |" << endl;
+    cout << "|--------------------|------------|------------|" << endl;
+
+    ios state(nullptr);
+    state.copyfmt(cout);
+
+    for (Adventurer& adventurer : adventurers) {
+        cout.copyfmt(state);
+
+        string name{ adventurer.getName() };
+        string role{ Adventurer::roleToString(adventurer.getRole()) };
+        string weaponType{ Adventurer::weaponTypeToString(adventurer.getWeaponType()) };
+
+        if (!(name.size() < (NAME_LENGTH - 3))) {
+            name = name.substr(0, (NAME_LENGTH - 3));
+            name = name + "...";
+        }
+        if (!(role.size() < (ROLE_LENGTH - 3))) {
+            role = role.substr(0, (ROLE_LENGTH - 3));
+            role = role + "...";
+        }
+        if (!(weaponType.size() < (WEAPONTYPE_LENGTH - 3))) {
+            weaponType = weaponType.substr(0, (WEAPONTYPE_LENGTH - 3));
+            weaponType = weaponType + "...";
+        }
+
+        cout << "|"
+            << std::setw(NAME_LENGTH)
+            << std::setfill(' ')
+            << std::left
+            << name;
+        cout << "|"
+            << std::setw(ROLE_LENGTH)
+            << std::setfill(' ')
+            << std::left
+            << role;
+        cout << "|"
+            << std::setw(WEAPONTYPE_LENGTH)
+            << std::setfill(' ')
+            << std::left
+            << weaponType;
+
+        cout.copyfmt(state);
+        cout << "|" << endl;
+    }
+    cout << "Press any key to continue. . .";
+    Menu::pauseConsole();
 }
 
 
