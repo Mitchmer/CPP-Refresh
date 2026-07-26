@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="driver.cpp" />
     <ClCompile Include="src\Adventurer.cpp" />
-    <ClCompile Include="src\DynamicMenu.cpp" />
+    <ClCompile Include="src\DynamicStringInputMenu.cpp" />
     <ClCompile Include="src\DynamicNumberedMenu.cpp" />
     <ClCompile Include="src\Item.cpp" />
     <ClCompile Include="src\Menu.cpp" />
@@ -29,7 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Adventurer.h" />
-    <ClInclude Include="include\DynamicMenu.h" />
+    <ClInclude Include="include\DynamicStringInputMenu.h" />
     <ClInclude Include="include\DynamicNumberedMenu.h" />
     <ClInclude Include="include\Item.h" />
     <ClInclude Include="include\Menu.h" />

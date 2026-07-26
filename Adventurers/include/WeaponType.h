@@ -3,6 +3,7 @@ namespace cppadventure {
     enum class WeaponType {
         MELEE,
         RANGED,
-        CATALYST
+        CATALYST,
+        NONE
     };
 }

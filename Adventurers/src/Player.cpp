@@ -10,17 +10,13 @@ using std::cout, std::endl;
 // Constructors
 
 Player::Player()
-	: name("testname"), inventory(vector<string>{}), inventorySize(0) {
-	cout << "Player (Parent) Default Constructor called" << std::endl;
-}
+	: name("testname"), inventory(vector<string>{}), inventorySize(0) {}
 
 Player::Player(string n, const vector<string>& inv) 
-	: name(n), inventory(inv), inventorySize(inv.size()) {
-	cout << "Player (Parent) Parameterized Constructor called" << std::endl;
-}
+	: name(n), inventory(inv), inventorySize(inv.size()) {}
 
 // copy constructor
-Player::Player(Player& player) 
+Player::Player(const Player& player) 
 	: name(player.getName()), inventorySize(player.getInventorySize()), inventory(player.getInventory()) {}
 
 //=================================

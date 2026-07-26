@@ -3,6 +3,7 @@ namespace cppadventure {
     enum class Role {
         DPS,
         TANK,
-        HEALER
+        HEALER,
+        NONE
     };
 }

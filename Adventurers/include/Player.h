@@ -9,7 +9,7 @@ namespace cppadventure {
         public:
             Player();
             Player(string name, const vector<string>& inventory);
-            Player(Player& player);
+            Player(const Player& player);
 
             // name methods
             void setName(string name);

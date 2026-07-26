@@ -19,7 +19,7 @@ Adventurer::Adventurer(string n, Role r, WeaponType wt, const vector<string>& in
 }
 
 // Copy Constructor
-Adventurer::Adventurer(Adventurer& adventurer) :
+Adventurer::Adventurer(const Adventurer& adventurer) :
 	role(adventurer.getRole()), weaponType(adventurer.getWeaponType()), Player(adventurer.getName(), adventurer.getInventory()) {
 }
 

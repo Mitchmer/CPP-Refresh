@@ -1,0 +1,91 @@
+#include "DynamicStringInputMenu.h"
+
+using namespace cppadventure;
+
+//============================
+// Default Constructor
+
+DynamicStringInputMenu::DynamicStringInputMenu(string h, string p, const vector<string>* svPtr, string i, string invalidSelMsg, bool isActive)
+	: Menu(h, p, invalidSelMsg, isActive), input{i} {
+	selections = new vector<string>();
+	lastIndex = 0;
+
+	if (svPtr != nullptr) {
+		if (!svPtr->empty()) {
+			for (string s : *svPtr) {
+				selections->push_back(s);
+			}
+			lastIndex = selections->size() - 1;
+		}
+	}
+}
+
+//==========================
+// Overrides
+
+vector<string> DynamicStringInputMenu::getSelections() const {
+	return *selections;
+}
+
+void DynamicStringInputMenu::addSelection(string s) {
+	selections->push_back(s);
+	lastIndex = selections->size() - 1;
+}
+
+void DynamicStringInputMenu::addSelections(const vector<string>* sv) {
+	for (string s : *sv) {
+		selections->push_back(s);
+	}
+	lastIndex = selections->size() - 1;
+}
+
+bool DynamicStringInputMenu::removeSelection(size_t index) {
+	size_t size = selections->size();
+	if ((index < size) && size > 0) {
+		selections->erase(selections->begin() + index);
+		size--;
+		if (size > 0) {
+			lastIndex = size - 1;
+		}
+		else {
+			lastIndex = 0;
+		}
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+void DynamicStringInputMenu::displayMenu() const {
+	using std::cout, std::endl;
+
+	clearConsole();
+	cout << getHeader() << endl;
+	for (string selection : getSelections()) {
+		cout << selection << endl;
+	}
+	cout << getPrompt();
+}
+
+void DynamicStringInputMenu::pauseForSelection() {
+	using std::cin;
+
+	cin >> input;
+	if (cin.fail()) {
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return;
+	}
+
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	return;
+}
+
+string DynamicStringInputMenu::getInput() const {
+	return input;
+}
+
+DynamicStringInputMenu::~DynamicStringInputMenu() {
+	delete selections;
+}
